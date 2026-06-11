@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Present Simple — A2 Grammar Activity</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #f5f6fa;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    color: #1a1a2e;
+    line-height: 1.6;
+    padding: 2rem 1rem;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  header {
+    margin-bottom: 2rem;
+  }
+
+  header h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 0.25rem;
+  }
+
+  header p {
+    font-size: 0.9rem;
+    color: #888;
+  }
+
+  .score-bar {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .score-label { font-size: 13px; color: #888; }
+  .score-num { font-size: 1.4rem; font-weight: 700; color: #1a1a2e; }
+
+  .reset-btn {
+    padding: 6px 14px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: transparent;
+    color: #888;
+    cursor: pointer;
+    font-size: 13px;
+  }
+  .reset-btn:hover { color: #1a1a2e; border-color: #ccc; }
+
+  .section { margin-bottom: 2.5rem; }
+
+  .section-title {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #aaa;
+    margin-bottom: 0.5rem;
+  }
+
+  .hint {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 1rem;
+  }
+
+  .question {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 10px;
+  }
+
+  .q-text { margin-bottom: 10px; font-size: 15px; }
+
+  .q-options { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .opt-btn {
+    padding: 6px 16px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    background: #f5f6fa;
+    color: #1a1a2e;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.15s;
+  }
+  .opt-btn:hover { background: #eaedf5; }
+  .opt-btn.correct { background: #dcfce7; border-color: #86efac; color: #15803d; }
+  .opt-btn.wrong   { background: #fee2e2; border-color: #fca5a5; color: #b91c1c; }
+  .opt-btn:disabled { cursor: default; }
+
+  .feedback {
+    font-size: 13px;
+    margin-top: 8px;
+    min-height: 16px;
+    color: #888;
+  }
+
+  .fill-input {
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 5px 12px;
+    font-size: 14px;
+    background: #f5f6fa;
+    color: #1a1a2e;
+    width: 130px;
+    outline: none;
+    font-family: inherit;
+  }
+  .fill-input:focus { border-color: #6366f1; background: #fff; }
+  .fill-input.correct { border-color: #86efac; background: #dcfce7; color: #15803d; }
+  .fill-input.wrong   { border-color: #fca5a5; background: #fee2e2; color: #b91c1c; }
+
+  .error-input {
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 14px;
+    background: #f5f6fa;
+    color: #1a1a2e;
+    width: 100%;
+    outline: none;
+    font-family: inherit;
+    resize: none;
+    height: 48px;
+    margin-top: 6px;
+  }
+  .error-input:focus { border-color: #6366f1; background: #fff; }
+  .error-input.correct { border-color: #86efac; background: #dcfce7; color: #15803d; }
+  .error-input.wrong   { border-color: #fca5a5; background: #fee2e2; color: #b91c1c; }
+
+  .original {
+    font-size: 14px;
+    color: #888;
+    font-style: italic;
+    margin-bottom: 2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <h1>Present Simple</h1>
+    <p>A2 Grammar Activity — 12 questions</p>
+  </header>
+
+  <div class="score-bar">
+    <div>
+      <div class="score-label">Your score</div>
+      <div class="score-num" id="score-display">0 / 12</div>
+    </div>
+    <button class="reset-btn" onclick="resetAll()">↺ Start over</button>
+  </div>
+
+  <!-- Part 1 -->
+  <div class="section">
+    <div class="section-title">Part 1 — Choose the right form</div>
+    <div class="hint">Click the correct answer.</div>
+
+    <div class="question" id="mc1">
+      <div class="q-text">She ___ to school every day.</div>
+      <div class="q-options">
+        <button class="opt-btn" onclick="checkMC('mc1','go',['goes'])">go</button>
+        <button class="opt-btn" onclick="checkMC('mc1','goes',['goes'])">goes</button>
+        <button class="opt-btn" onclick="checkMC('mc1','going',['goes'])">going</button>
+      </div>
+      <div class="feedback" id="mc1-fb"></div>
+    </div>
+
+    <div class="question" id="mc2">
+      <div class="q-text">They ___ football on Sundays.</div>
+      <div class="q-options">
+        <button class="opt-btn" onclick="checkMC('mc2','plays',['play'])">plays</button>
+        <button class="opt-btn" onclick="checkMC('mc2','play',['play'])">play</button>
+        <button class="opt-btn" onclick="checkMC('mc2','is play',['play'])">is play</button>
+      </div>
+      <div class="feedback" id="mc2-fb"></div>
+    </div>
+
+    <div class="question" id="mc3">
+      <div class="q-text">My brother ___ not like coffee.</div>
+      <div class="q-options">
+        <button class="opt-btn" onclick="checkMC('mc3','do',['does'])">do</button>
+        <button class="opt-btn" onclick="checkMC('mc3','does',['does'])">does</button>
+        <button class="opt-btn" onclick="checkMC('mc3','is',['does'])">is</button>
+      </div>
+      <div class="feedback" id="mc3-fb"></div>
+    </div>
+
+    <div class="question" id="mc4">
+      <div class="q-text">___ you live near the city centre?</div>
+      <div class="q-options">
+        <button class="opt-btn" onclick="checkMC('mc4','Are',['Do'])">Are</button>
+        <button class="opt-btn" onclick="checkMC('mc4','Does',['Do'])">Does</button>
+        <button class="opt-btn" onclick="checkMC('mc4','Do',['Do'])">Do</button>
+      </div>
+      <div class="feedback" id="mc4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Part 2 -->
+  <div class="section">
+    <div class="section-title">Part 2 — Fill in the gap</div>
+    <div class="hint">Type the correct form of the verb in brackets.</div>
+
+    <div class="question">
+      <div class="q-text">My parents <input class="fill-input" id="fi1" placeholder="(work)" oninput="checkFill('fi1',['work'])"> in a hospital.</div>
+      <div class="feedback" id="fi1-fb"></div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">He <input class="fill-input" id="fi2" placeholder="(watch)" oninput="checkFill('fi2',['watches'])"> TV every evening.</div>
+      <div class="feedback" id="fi2-fb"></div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">I <input class="fill-input" id="fi3" placeholder="(not eat)" oninput="checkFill('fi3',[`don't eat`,`do not eat`])"> meat.</div>
+      <div class="feedback" id="fi3-fb"></div>
+    </div>
+
+    <div class="question">
+      <div class="q-text">The train <input class="fill-input" id="fi4" placeholder="(leave)" oninput="checkFill('fi4',['leaves'])"> at 7 am.</div>
+      <div class="feedback" id="fi4-fb"></div>
+    </div>
+  </div>
+
+  <!-- Part 3 -->
+  <div class="section">
+    <div class="section-title">Part 3 — Fix the mistake</div>
+    <div class="hint">Each sentence has one mistake. Type the corrected sentence.</div>
+
+    <div class="question">
+      <div class="original">She don't speak French.</div>
+      <textarea class="error-input" id="er1" placeholder="Type the correct sentence..." oninput="checkError('er1',[`She doesn't speak French.`,`She does not speak French.`])"></textarea>
+      <div class="feedback" id="er1-fb"></div>
+    </div>
+
+    <div class="question">
+      <div class="original">Do he play the guitar?</div>
+      <textarea class="error-input" id="er2" placeholder="Type the correct sentence..." oninput="checkError('er2',['Does he play the guitar?'])"></textarea>
+      <div class="feedback" id="er2-fb"></div>
+    </div>
+
+    <div class="question">
+      <div class="original">We goes to the gym on Mondays.</div>
+      <textarea class="error-input" id="er3" placeholder="Type the correct sentence..." oninput="checkError('er3',['We go to the gym on Mondays.'])"></textarea>
+      <div class="feedback" id="er3-fb"></div>
+    </div>
+
+    <div class="question">
+      <div class="original">He studys English every night.</div>
+      <textarea class="error-input" id="er4" placeholder="Type the correct sentence..." oninput="checkError('er4',['He studies English every night.'])"></textarea>
+      <div class="feedback" id="er4-fb"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const answered = {};
+  const totalQ = 12;
+
+  function updateScore() {
+    const correct = Object.values(answered).filter(v => v === true).length;
+    document.getElementById('score-display').textContent = correct + ' / ' + totalQ;
+  }
+
+  function checkMC(qid, chosen, correct) {
+    if (answered[qid] === true) return;
+    const btns = document.querySelectorAll('#' + qid + ' .opt-btn');
+    const fb = document.getElementById(qid + '-fb');
+    const isCorrect = correct.map(c => c.toLowerCase()).includes(chosen.toLowerCase());
+    btns.forEach(b => {
+      b.disabled = true;
+      if (correct.map(c => c.toLowerCase()).includes(b.textContent.toLowerCase())) b.classList.add('correct');
+      else if (b.textContent.toLowerCase() === chosen.toLowerCase() && !isCorrect) b.classList.add('wrong');
+    });
+    if (isCorrect) {
+      fb.textContent = '✓ Correct!';
+      fb.style.color = '#15803d';
+      answered[qid] = true;
+    } else {
+      fb.textContent = 'Not quite — the correct answer is highlighted.';
+      fb.style.color = '#b91c1c';
+      if (answered[qid] === undefined) answered[qid] = false;
+    }
+    updateScore();
+  }
+
+  function checkFill(id, correctList) {
+    const input = document.getElementById(id);
+    const val = input.value.trim().toLowerCase();
+    const fb = document.getElementById(id + '-fb');
+    if (!val) { input.className = 'fill-input'; fb.textContent = ''; return; }
+    const isCorrect = correctList.map(c => c.toLowerCase()).includes(val);
+    if (isCorrect) {
+      input.className = 'fill-input correct';
+      fb.textContent = '✓ Correct!';
+      fb.style.color = '#15803d';
+      input.readOnly = true;
+      if (answered[id] !== true) { answered[id] = true; updateScore(); }
+    } else {
+      input.className = 'fill-input wrong';
+      fb.textContent = 'Not quite yet, keep trying...';
+      fb.style.color = '#b91c1c';
+      if (answered[id] === undefined) { answered[id] = false; updateScore(); }
+    }
+  }
+
+  function checkError(id, correctList) {
+    const input = document.getElementById(id);
+    const val = input.value.trim().toLowerCase().replace(/\s+/g, ' ');
+    const fb = document.getElementById(id + '-fb');
+    if (!val) { input.className = 'error-input'; fb.textContent = ''; return; }
+    const isCorrect = correctList.map(c => c.toLowerCase()).includes(val);
+    if (isCorrect) {
+      input.className = 'error-input correct';
+      fb.textContent = '✓ Correct!';
+      fb.style.color = '#15803d';
+      input.readOnly = true;
+      if (answered[id] !== true) { answered[id] = true; updateScore(); }
+    } else {
+      input.className = 'error-input wrong';
+      fb.textContent = 'Hmm, check the verb form.';
+      fb.style.color = '#b91c1c';
+      if (answered[id] === undefined) { answered[id] = false; updateScore(); }
+    }
+  }
+
+  function resetAll() {
+    Object.keys(answered).forEach(k => delete answered[k]);
+    document.getElementById('score-display').textContent = '0 / 12';
+    ['mc1','mc2','mc3','mc4'].forEach(id => {
+      document.querySelectorAll('#' + id + ' .opt-btn').forEach(b => { b.disabled = false; b.className = 'opt-btn'; });
+      const fb = document.getElementById(id + '-fb');
+      if (fb) { fb.textContent = ''; }
+    });
+    ['fi1','fi2','fi3','fi4','er1','er2','er3','er4'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) { el.value = ''; el.className = el.tagName === 'TEXTAREA' ? 'error-input' : 'fill-input'; el.readOnly = false; }
+      const fb = document.getElementById(id + '-fb');
+      if (fb) { fb.textContent = ''; }
+    });
+  }
+</script>
+
+</body>
+</html>
